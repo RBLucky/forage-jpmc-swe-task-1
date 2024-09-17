@@ -1,5 +1,5 @@
 import unittest
-from client3 import getDataPoint
+from client3 import getDataPoint, getRatio
 
 class ClientTest(unittest.TestCase):
   def test_getDataPoint_calculatePrice(self):
@@ -16,8 +16,17 @@ class ClientTest(unittest.TestCase):
     ]
     """ ------------ Add the assertion below ------------ """
 
-
+  def test_getDataPoint_ensureFunctionNeedsValidInput(self):
+     with self.assertRaises(TypeError):
+        getDataPoint()
+     
   """ ------------ Add more unit tests ------------ """
+  def test_getRatio_EnsureDoesNotDivideByZero(self):
+     self.assertNotEqual(getRatio(1, 0), ZeroDivisionError)
+
+  @unittest.expectedFailure
+  def test_getRatio(self):
+     self.assertEqual(getRatio(1, 1), getRatio(100, 50))
 
 
 
